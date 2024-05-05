@@ -27,7 +27,7 @@ export class ProductController {
         try {
 
             
-            const response = await this.repository.getAllProducts(req.query.limit as any)
+            const response = await this.repository.getAllProducts(req.query.limit as any, req.query.name as any)
 
             return res.status(response.status).json({ ...response.data })
         } catch (error) {

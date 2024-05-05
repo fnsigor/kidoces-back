@@ -73,7 +73,9 @@ export class ProductRepo {
 
         const whereParams: any = {}
         if (name) {
-            queryParams.name = name
+            whereParams.name = {
+                contains: name
+            }
         }
 
         try {
@@ -83,7 +85,7 @@ export class ProductRepo {
                 },
                 where: {
                     ...whereParams
-                }
+                },
                 ...queryParams
             })
 
