@@ -64,11 +64,16 @@ export class ProductRepo {
         }
     }
 
-    getAllProducts = async (limit: number | undefined = undefined) => {
+    getAllProducts = async (limit: number | undefined = undefined, name: string | undefined = undefined) => {
 
         const queryParams: any = {}
-        if(limit){
+        if (limit) {
             queryParams.take = Number(limit)
+        }
+
+        const whereParams: any = {}
+        if (name) {
+            queryParams.name = name
         }
 
         try {
@@ -76,6 +81,9 @@ export class ProductRepo {
                 include: {
                     seller: true
                 },
+                where: {
+                    ...whereParams
+                }
                 ...queryParams
             })
 
